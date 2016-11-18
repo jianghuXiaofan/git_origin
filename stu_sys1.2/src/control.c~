@@ -1,0 +1,65 @@
+#include "control.h"
+#include "top_view.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "fun_login.h"
+int login_control(void)
+{
+	char choose = 0;
+	while(1)
+	{
+		system("clear");
+		login_view();
+		choose = getchar();
+		while(getchar() != '\n');
+		switch(choose)
+		{
+		case '1':
+			login();
+			//printf("login!\n");
+			return 1;
+			break;
+		case '2':
+			printf("register\n");
+			return 2;
+			break;
+		case '0':
+			printf("exit\n");
+			return 0;
+		default:
+			printf("input erro!\n");
+			return 0;
+		}
+	}
+	return 0;
+}
+
+void fun_teach_view(void)
+{
+	char choose = 0;
+	system("clear");
+
+	while(1)
+	{
+	printf("1查看2增加3增加4排序5删除0保存退出\n");
+	choose = getchar();
+	while(getchar() != '\n');
+	switch(choose)
+	{
+		case '1':
+				printf("查看\n");
+			break;
+		case '2':break;
+		case '3':break;
+		case '4':break;
+		case '5':break;
+		case '0':
+				printf("退出\n");
+			   return;
+			   break;
+		default: printf("input error\n");
+	}
+	}
+}
+
+
