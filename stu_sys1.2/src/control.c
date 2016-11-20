@@ -16,7 +16,6 @@ void login_control(void)
 		system("clear");
 		login_view();
 		choose = getchar();
-		while(getchar() != '\n');
 		switch(choose)
 		{
 		case '1':

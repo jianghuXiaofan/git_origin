@@ -256,7 +256,7 @@ void free_file_student_node(struct stu_node * head)
 	}
 
 	bef = head->next;
-	while(NULL != temp)
+	while(NULL != bef)
 	{
 		temp = bef->next;
 		free(bef);

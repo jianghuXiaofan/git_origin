@@ -40,6 +40,7 @@ void login(void)
 			switch (getchar())
 			{
 			 	case 'y' : flag = 0; //设个标志位选择下直接退到上一目录 还是换个人登录
+			 			return;
 			 			break;
 			 	case 'c' : flag = 1; 
 			 			break;
@@ -58,6 +59,7 @@ void login(void)
 			switch (getchar())
 			{
 			 	case 'y' : flag = 0; 
+			 			return;
 			 			break;
 			 	case 'c' : flag = 1; 
 			 			break;
