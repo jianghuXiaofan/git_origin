@@ -1,0 +1,23 @@
+/*************************************************************************
+    > File Name: src/user.c
+    > Author: xiaofan
+    > Mail: jianghu_xiaofan@foxmail.com 
+    > Created Time: 2016年11月22日 星期二 15时17分14秒
+ ************************************************************************/
+#include "user.h"
+#include<stdio.h>
+
+
+void user_regist(struct User * User_head)
+{	
+	struct User * temp = NULL;
+	char name[30] ="\0";
+	printf("please input username\n");
+	scanf("%s",name);
+	if(NULL == User_node_find_bef(temp,name))
+	{
+		
+	}
+	else 
+	{
+		printf("

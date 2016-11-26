@@ -1,0 +1,23 @@
+/*************************************************************************
+    > File Name: control.c
+    > Author: xiaofan
+    > Mail: jianghu_xiaofan@foxmail.com 
+    > Created Time: 2016年11月22日 星期二 10时04分08秒
+ ************************************************************************/
+#include "struct.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "control.h"
+#include "login_view.h"
+#include "user.h"
+#include <string.h>
+#include "user_link.h"
+
+void user_login_control(void)
+{
+	char choose = 0;
+	struct User * User_head = malloc(sizeof(struct User));
+	User_head->next = NULL;
+	//read_from_file();
+	User_file_read(User_head);
+	printf("

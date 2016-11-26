@@ -1,0 +1,127 @@
+#include "struct.h"
+#include "admin.h"
+#include "login_view.h"
+#include <stdlib.h>
+#include<stdio.h>
+#include "user.h"
+#include "user_link.h"
+
+void admin_select_control(void)
+{
+	char choose = 0;
+	struct User * Admin_head = malloc(sizeof(struct User));
+	Admin_head->next = NULL;
+	User_file_read(Admin_head);
+	User_all_node_show(Admin_head);
+	while(1)
+	{
+		admin_login_view();
+		choose = getchar();	
+		while(getchar() != '\n');
+		switch(choose)
+		{
+	
+			case '1':
+					printf("查看彩民信息\n");//姓名 余额 中奖情况
+					getchar();getchar();
+					break;
+			case '2':
+					printf("发行下一批彩票\n");//设置发行数 单价等
+					getchar();getchar();		
+					break;
+			case '3':
+					printf("为彩民充值\n");//查余额 充值
+					Admin_addpay(Admin_head);		
+					break;
+			case '4':
+					printf("排序\n");//查看全部 姓名 
+					getchar();getchar();		
+					break;
+			case '0':
+					printf("exit\n");
+					return;
+					break;
+			default: ;
+		}
+	}
+}
+//查看彩民信息
+
+void Admin_find_uesr_control(struct User * User_head)
+{
+	char choose = 0;
+	while(1)
+	{	
+		printf("1.姓名查找\n");
+		printf("2.区间查找\n");
+		printf("3.全部查看\n");
+		printf("0.exit\n");
+		printf("请选择:\n");
+		choose = getchar();	
+		while(getchar() != '\n');
+		switch(choose)
+		{
+	
+			case '1':
+					printf("姓名查找\n");//姓名 余额 中奖情况
+					getchar();getchar();
+					break;
+			case '2':
+					printf("区间查找\n");//设置发行数 单价等
+					getchar();getchar();		
+					break;
+			case '3':
+					printf("全部查看\n");//设置发行数 单价等
+					getchar();getchar();		
+					break;
+			case '0':
+					return;					
+					break;
+			default: ;
+		}
+	}
+}
+
+//为彩民充值
+void Admin_addpay(struct User * User_head)
+{
+	struct User * temp = NULL;
+	struct User * bef = NULL;//新建节点的
+	char name[30] ="\0";
+	float money = 0;
+	int i = 0;//记录错误次数
+	temp = User_head;
+	while(i<2)
+	{
+		printf("please input username\n");
+		scanf("%s",name);
+		while(getchar() != '\n');
+		
+		bef = User_node_find_bef(temp,name);
+		if(NULL == bef)
+		{
+			printf("用户不存在\n");
+			i++;
+			continue;
+		}
+
+		printf("请输入钱数！\n");
+		scanf("%f",&money);
+		while(getchar() != '\n');
+		if(money < 0)
+		{
+			printf("请输入正确的数字\n");
+			i++;
+		}
+		else 
+		{
+			i =	0;
+			bef->next->money += money; 
+			printf("充值成功 当前余额为%.2f\n",
+				bef->next->money);
+			getchar();getchar();
+			return;
+		}
+	}
+}
+

@@ -1,0 +1,12 @@
+/*************************************************************************
+    > File Name: inc/link.h
+    > Author: xiaofan
+    > Mail: jianghu_xiaofan@foxmail.com 
+    > Created Time: 2016年11月22日 星期二 13时38分36秒
+ ************************************************************************/
+#ifndef __USER_LINK_H
+#define __USER_LINK_H
+
+//struct User * User_node_add(struct User * User_head);
+
+void User_node_add(struct User * User_head);//

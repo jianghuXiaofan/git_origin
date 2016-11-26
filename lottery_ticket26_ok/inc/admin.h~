@@ -1,0 +1,6 @@
+#ifndef __ADMIN_H
+#define __ADMIN_H
+
+void admin_select_control(void);
+void Admin_addpay(struct User * User_head);
+#endif

@@ -1,0 +1,147 @@
+/*************************************************************************
+    > File Name: src/user.c
+    > Author: xiaofan
+    > Mail: jianghu_xiaofan@foxmail.com 
+    > Created Time: 2016Äê11ÔÂ22ÈÕ ÐÇÆÚ¶þ 15Ê±17·Ö14Ãë
+ ************************************************************************/
+#include "struct.h"
+#include "user.h"
+#include<stdio.h>
+#include "user_link.h"
+#include <string.h>
+
+
+void user_regist(struct User * User_head)
+{	
+	struct User * temp = NULL;
+	struct User * p = NULL;//新建节点的
+	char choose = 0;
+	char name[30] ="\0";
+	char passworld_a[50] = "\0";
+	char passworld_b[50] = "\0";
+	if(NULL == User_head)
+	{
+		printf("in is null\n");
+		return;
+	}
+	temp = User_head;
+	while(1)
+	{
+		printf("please input username\n");
+		scanf("%s",name);
+		while(getchar() != '\n');
+		if(NULL != User_node_find_bef(temp,name))
+		{
+			printf("用户已经存在!\n");
+			printf("重新注册或退出？y or 其他\n");
+			choose = getchar();
+			while(getchar() != '\n');
+			if(choose == 'y')
+			{
+				continue;				
+			}else 
+				return;
+		}
+		//开始注册
+		printf("请输入密码:\n");
+		scanf("%s",passworld_a);
+		while(getchar() != '\n');
+		printf("请再次输入密码:\n");
+		scanf("%s",passworld_b);
+		while(getchar() != '\n');
+		if(strcmp(passworld_a,passworld_b) == 0)
+		{
+			User_node_add(temp,name,passworld_b);		
+			printf("注册成功！\n");
+			printf("请等待 转到上一层\n");
+			return;
+		}
+		else
+		{
+			printf("两次密码不相符,请重新输入\n");
+		} 
+	}	
+}
+
+
+void user_login(struct User * User_head)
+{
+	struct User * temp = NULL;
+	struct User * bef = NULL;//新建节点的
+	char name[30] ="\0";
+	char passworld[50] = "\0";
+	int i = 0;//记录错误次数
+	temp = User_head;
+	while(i<2)
+	{
+		printf("please input username\n");
+		scanf("%s",name);
+		while(getchar() != '\n');
+
+		bef = User_node_find_bef(temp,name);
+		if(NULL == bef)
+		{
+			printf("用户不存在\n");
+			i++;//return;
+			continue;
+		}
+	
+		printf("请输入密码:\n");
+		scanf("%s",passworld);
+		while(getchar() != '\n');
+		if(strcmp(passworld,bef->next->pwd)!=0)
+		{
+			printf("密码不正确请重新输入用户名和密码\n");
+			i++;
+		}
+		else
+		{
+			printf("登陆成功\n");
+			//处理函数	
+			user_mess_view(bef->next);
+			return;
+		}
+	}
+}
+
+
+void user_mess_view(struct User * User_message_node)
+{
+	char choose = 0;
+	while(1)
+	{	
+		printf("1.查看信息\n");
+		printf("2.修改密码\n");
+		printf("3.充值\n");
+		printf("0.exit\n");
+		choose = getchar();
+		while(getchar() != '\n');
+		switch(choose)
+		{
+	
+			case '1':
+					printf("查看信息\n");
+					User_one_node_show(User_message_node);
+					break;
+			case '2':
+					printf("修改密码\n");
+					User_revised_pwd_node(User_message_node);
+					break;
+			case '3':
+					printf("充值\n");
+					User_addpay_node(User_message_node);
+					break;
+			case '0':
+					printf("exit\n");
+					return;
+					break;
+			default: ;
+		}
+	}
+}
+
+
+
+
+
+

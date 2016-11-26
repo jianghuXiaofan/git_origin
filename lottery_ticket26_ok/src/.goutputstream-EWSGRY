@@ -1,0 +1,72 @@
+/*************************************************************************
+    > File Name: src/link.c
+    > Author: xiaofan
+    > Mail: jianghu_xiaofan@foxmail.com 
+    > Created Time: 2016年11月22日 星期二 13时37分20秒
+ ************************************************************************/
+#include "struct.h"
+#include "user_link.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+
+struct User * User_node_find_bef(struct User * User_head,char * name)
+{
+	struct User * bef = NULL;
+	if(NULL == User_head)
+	{
+		printf("in is null\n");
+		return NULL;
+	}
+	bef = User_head;
+
+	while('\n' != getchar());
+	
+	while(strcmp(name,bef->name) !=0 )
+	{
+		bef = bef->next;
+		if(bef == NULL)
+		{
+			printf("no find\n");
+			return NULL;
+		}
+	}
+	return bef;
+}
+
+
+struct User * User_node_add(struct User * User_head)
+{
+	struct User * temp = NULL;
+	struct User * p = NULL;
+	if(NULL == User_head)
+	{
+		printf("in is null\n");
+		return NULL;
+	}
+	temp = User_head;
+	while(NULL != temp->next)
+	{
+		temp = temp->next;
+	}
+	p = malloc(sizeof(struct User));
+	p->next = NULL;
+	temp->next = p;
+	return p;
+}
+
+void User_node_show(struct User * User_head)
+{
+	struct User * temp = NULL;
+	if(NULL == User_head)
+	{
+		printf("in is null\n");
+		return;
+	}
+	temp = User_head->next;
+	while(NULL != temp)
+	{char name[30];
+	char pwd[50];
+	float money;
+		printf("

@@ -1,0 +1,62 @@
+#include "struct.h"
+#include "ticket_link.h"
+
+//管理员发行用的
+void Publish_ticket_revised_node(struct Publish_ticket * Pub_head,float price,int sellCount)
+{
+	struct Publish_ticket * temp = NULL;
+	
+
+}
+
+//找到前一相
+struct Publish_ticket * Ticket_find_bef_issue_node(struct Publish_ticket * Pub_head,int * issue)
+{
+	struct Publish_ticket * bef = NULL;
+	bef = head;
+	while(NULL != bef->next)
+	{
+		if(bef->next->issue == issue)
+		{
+			return bef;
+		}
+		bef = bef->next;
+	}
+}
+
+
+void Ticket_add_node(struct Publish_ticket * Pub_head)
+{
+	struct Publish_ticket * temp = NULL;
+	struct Publish_ticket * p = NULL;
+	temp = head;
+	while(NULL != temp->next)
+	{
+		temp = temp->next;		
+	}
+	p = malloc(sizeof(struct Publish_ticket));
+	printf("请输入单张金额:\n");
+	printf("请设置发行数目:\n");
+	p->next = NULL;
+	temp->next = p;
+}
+
+void Ticket_all_node_show(stuct Publish_ticket * Pub_head)
+{
+	struct Publish_ticket * temp = NULL;
+	temp = head->next;
+	while(NULL != temp)
+	{
+		printf("期数\t单价\t中奖号码\t状态\t售数\t池总\n");
+		printf("%d\t%.2f\t%d%d%d\t%d\t%d\t%.2f\n",
+				temp->issue,temp->price,temp->num[0],
+				temp->num[1],temp->num[2],
+				temp->state,temp->sellCount,
+				temp->totalMoney
+				);
+		temp = temp->next;
+	}	
+}
+
+
+

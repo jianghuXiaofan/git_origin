@@ -1,0 +1,44 @@
+/*:************************************************************************
+    > File Name: src/login_view.c
+    > Author: xiaofan
+    > Mail: jianghu_xiaofan@foxmail.com 
+    > Created Time: 2016年11月21日 星期一 22时06分12秒
+ ************************************************************************/
+
+#include<stdio.h>
+#include "login_view.h"
+#include "control.h"
+
+void login_view(void)
+{
+	printf("彩票系统\n");
+	printf("1.管理员\n");
+	printf("2.用户\n");
+	printf("3.公正员\n");
+	printf("0.exit\n");
+	printf("请选择:1\n");
+}
+
+void admin_login_view(void)
+{
+	printf("##################################################\n");
+	
+	printf("1.搜索查看彩民信息\n");
+	printf("2.发行下一批彩票\n");
+	printf("3.为彩民充值\n");
+	printf("4.按余额排序\n");
+	printf("5.查看所有彩民信息\n");
+	//printf("6.修改彩民信息\n");
+	printf("0.exit\n");
+}
+
+void user_login_view(void)
+{
+	printf("##################################################\n");
+	printf("1.注册\n");
+	printf("2.登陆\n");
+	printf("3.注销\n");
+	printf("0.exit\n");
+	printf("请选择:2\n");
+}
+
